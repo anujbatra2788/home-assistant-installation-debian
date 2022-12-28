@@ -18,7 +18,7 @@ fnc_create_ha_instance() {
 }
 
 fnc_create_systemd_service() {
-	sudo rm $HA_SYSTEMD_FILE_PATH
+	sudo rm -f $HA_SYSTEMD_FILE_PATH
 
 	sudo echo '[Unit]' >> $HA_TMP_SYSTEMD_FILE_PATH;
 	sudo echo 'Description=Home Assistant' >> $HA_TMP_SYSTEMD_FILE_PATH;
@@ -43,7 +43,7 @@ fnc_create_systemd_service() {
 
 fnc_create_ha_sup_instance() {
 	cd /tmp
-	rm homeassistant-supervised.deb
+	rm -f homeassistant-supervised.deb
 	wget https://github.com/home-assistant/supervised-installer/releases/latest/download/homeassistant-supervised.deb
 	sudo dpkg --force-confdef --force-confold -i homeassistant-supervised.deb
 	cd -
@@ -58,6 +58,7 @@ fnc_start_ha() {
 }
 
 fnc_install_hacs() {
+	echo "Installing HACS"
 	wget -O - https://get.hacs.xyz | bash -
 }
 
