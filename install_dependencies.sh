@@ -6,16 +6,6 @@ sudo apt -y upgrade
 
 echo "Installing python"
 
-wget https://www.python.org/ftp/python/3.10.9/Python-3.10.9.tgz
-tar -xf Python-3.10.*.tgz
-cd Python-3.10.*/
-./configure --enable-optimizations
-make -j 4
-sudo make altinstall
-
-cd /tmp
-echo "Installing dependencies"
-
 sudo apt install -y vim \
 	dkms \
 	linux-headers-$(uname -r) \
@@ -30,8 +20,6 @@ sudo apt install -y vim \
 	dbus \
 	lsb-release \
 	systemd-journal-remote \
-	python3-pip \
-	python3-venv \
 	libssl-dev \
 	git \
 	zlib1g-dev \
@@ -42,6 +30,19 @@ sudo apt install -y vim \
 	libffi-dev \
 	libsqlite3-dev \
 	libbz2-dev
+
+wget https://www.python.org/ftp/python/3.10.9/Python-3.10.9.tgz
+tar -xf Python-3.10.*.tgz
+cd Python-3.10.*/
+./configure --enable-optimizations
+make -j 4
+sudo make altinstall
+
+cd /tmp
+echo "Installing dependencies"
+
+sudo apt install -y python3-pip \
+	python3-venv
 
 echo "Installing docker"
 
