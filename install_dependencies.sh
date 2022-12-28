@@ -22,7 +22,8 @@ sudo apt install -y vim \
 	systemd-journal-remote \
 	python3-pip \
 	python3-venv \
-	libssl-dev
+	libssl-dev \
+	git
 
 echo "Installing docker"
 curl -fsSL get.docker.com | sh

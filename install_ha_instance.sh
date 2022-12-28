@@ -49,6 +49,14 @@ fnc_create_ha_sup_instance() {
 
 }
 
+fnc_start_ha() {
+	set -e
+	cd $HA_BASE_PATH
+	source bin/activate
+	hass	
+}
+
 fnc_create_ha_instance
 fnc_create_ha_sup_instance
 fnc_create_systemd_service
+#fnc_start_ha
