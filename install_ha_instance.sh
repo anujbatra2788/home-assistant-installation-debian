@@ -11,7 +11,7 @@ fnc_create_ha_instance() {
 	sudo mkdir -p $HA_BASE_PATH
 	sudo chown -R $HA_USER:$HA_USER $HA_BASE_PATH
 	cd $HA_BASE_PATH
-	python3 -m venv .
+	python3.10 -m venv .
 	source bin/activate
 	pip3 install homeassistant
 	deactivate
@@ -43,8 +43,9 @@ fnc_create_systemd_service() {
 
 fnc_create_ha_sup_instance() {
 	cd /tmp
+	rm homeassistant-supervised.deb
 	wget https://github.com/home-assistant/supervised-installer/releases/latest/download/homeassistant-supervised.deb
-	dpkg --force-confdef --force-confold -i homeassistant-supervised.deb
+	sudo dpkg --force-confdef --force-confold -i homeassistant-supervised.deb
 	cd -
 
 }
@@ -56,7 +57,12 @@ fnc_start_ha() {
 	hass	
 }
 
+fnc_install_hacs() {
+	wget -O - https://get.hacs.xyz | bash -
+}
+
 fnc_create_ha_instance
 fnc_create_ha_sup_instance
 fnc_create_systemd_service
 #fnc_start_ha
+fnc_install_hacs
