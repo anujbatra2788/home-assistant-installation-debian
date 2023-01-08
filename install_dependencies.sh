@@ -92,3 +92,4 @@ echo '  network_key: GENERATE' | tee -a /opt/zigbee2mqtt/data/configuration.yaml
 sudo mv ./zigbee2mqtt.service /etc/systemd/system/zigbee2mqtt.service
 sudo systemctl reload zigbee2mqtt
 sudo systemctl start zigbee2mqtt
+sudo systemctl enable zigbee2mqtt
